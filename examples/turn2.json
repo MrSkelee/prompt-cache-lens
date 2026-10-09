@@ -1,0 +1,9 @@
+{
+  "model": "claude-3-5-sonnet",
+  "system": "Current time: 2026-10-09T14:00:15Z\nYou are an enterprise software engineering assistant. Always follow these 5 core architectural rules: 1) Prefer composition over inheritance. 2) Handle errors explicitly at the boundary. 3) Use immutable data structures where possible. 4) Write comprehensive unit and integration tests for every public function. 5) Keep dependencies minimal and audit licenses before installing packages.",
+  "messages": [
+    { "role": "user", "content": "How should I structure database connection pooling in Node.js?" },
+    { "role": "assistant", "content": "Use a generic pool with max connections capped to CPU cores * 2." },
+    { "role": "user", "content": "What about failover during network partition?" }
+  ]
+}
