@@ -216,7 +216,7 @@ export function analyzePromptCache(payloadA, payloadB, options = {}) {
       warnings.push({
         code: 'CACHE_BLOCK_SIZE_UNDERFLOW',
         severity: 'WARNING',
-        message: `Matched prefix is only ${cachedTokens} tokens. Anthropic ${modelConfig.name} requires a minimum of ${modelConfig.minCacheTokens} tokens to create an ephemeral cache breakpoint! (This turn will NOT be cached by Anthropic).`
+        message: `Matched prefix is only ${cachedTokens} tokens. ${modelConfig.name} requires a minimum of ${modelConfig.minCacheTokens} tokens to create an ephemeral cache breakpoint! (This turn will NOT be cached by Anthropic).`
       });
     }
   }
@@ -233,6 +233,11 @@ export function analyzePromptCache(payloadA, payloadB, options = {}) {
 
   const costLeak = calculateCostLeak(preventableTokensLost, modelConfig);
 
+  const escapeToken = t => {
+    if (!t) return null;
+    return t.replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/\t/g, '\\t');
+  };
+
   return {
     model: modelConfig,
     cachedTokens,
@@ -244,7 +249,7 @@ export function analyzePromptCache(payloadA, payloadB, options = {}) {
     rootCause,
     warnings,
     costLeak,
-    tokenAAtBreak: lcp.tokenAAtBreak?.text ?? null,
-    tokenBAtBreak: lcp.tokenBAtBreak?.text ?? null
+    tokenAAtBreak: escapeToken(lcp.tokenAAtBreak?.text),
+    tokenBAtBreak: escapeToken(lcp.tokenBAtBreak?.text)
   };
 }
