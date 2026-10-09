@@ -1,6 +1,6 @@
 {
   "name": "prompt-cache-lens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "LLM Prompt Cache Invalidation & Cost Leak Detector. Diffs consecutive LLM prompts, pinpoints exact cache break points, identifies root causes (timestamps, tool permutations, whitespace drift), and calculates wasted API dollars.",
   "main": "src/index.js",
   "type": "module",
