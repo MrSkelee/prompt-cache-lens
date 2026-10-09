@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "bin": {
-    "prompt-cache-lens": "./bin/cli.js"
+    "prompt-cache-lens": "bin/cli.js"
   },
   "scripts": {
     "test": "node --test test/*.test.js",
