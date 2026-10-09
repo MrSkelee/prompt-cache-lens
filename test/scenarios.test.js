@@ -131,17 +131,25 @@ test('Cache Efficiency: Perfect prefix alignment succeeds with 0 waste', () => {
   assert.equal(analysis.costLeak.wastedPerRequest, 0, 'No money should be wasted on normal multi-turn extension');
 });
 
-test('Pricing Engine: correctly resolves model rates and discounts', () => {
-  const sonnet = resolveModel('claude-3-5-sonnet-20241022');
-  assert.equal(sonnet.inputBase, 3.00);
-  assert.equal(sonnet.inputCached, 0.30);
-  assert.equal(sonnet.discountPercent, 90);
+test('Pricing Engine: correctly resolves modern model rates and discounts', () => {
+  const sonnet55 = resolveModel('claude-sonnet-5.5');
+  assert.equal(sonnet55.name, 'Anthropic Claude Sonnet 5.5');
+  assert.equal(sonnet55.inputBase, 2.00);
+  assert.equal(sonnet55.inputCached, 0.10);
+  assert.equal(sonnet55.discountPercent, 95);
 
-  const gpt4o = resolveModel('gpt-4o');
-  assert.equal(gpt4o.discountPercent, 50);
+  const opus55 = resolveModel('claude-opus-5.5');
+  assert.equal(opus55.name, 'Anthropic Claude Opus 5.5');
+  assert.equal(opus55.inputBase, 4.00);
+  assert.equal(opus55.inputCached, 0.20);
 
-  const leak = calculateCostLeak(100_000, sonnet);
-  // Uncached: $0.30, Cached: $0.03 -> Wasted: $0.27
-  assert.equal(leak.wastedPerRequest.toFixed(2), '0.27');
-  assert.equal(leak.projectedMonthlyLoss.req100Day.toFixed(2), '810.00');
+  const gpt6 = resolveModel('gpt-6-sol');
+  assert.equal(gpt6.inputBase, 2.00);
+  assert.equal(gpt6.inputCached, 0.10);
+  assert.equal(gpt6.discountPercent, 95);
+
+  const leak = calculateCostLeak(100_000, sonnet55);
+  // Uncached: $0.20, Cached: $0.01 -> Wasted: $0.19
+  assert.equal(leak.wastedPerRequest.toFixed(2), '0.19');
+  assert.equal(leak.projectedMonthlyLoss.req100Day.toFixed(2), '570.00');
 });

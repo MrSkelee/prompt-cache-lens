@@ -96,8 +96,8 @@ console.log(formatReport(report));
 
 ## Supported Models & Providers
 
-- **Anthropic**: Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Haiku (with 1024 / 2048 token boundary checks)
-- **OpenAI**: GPT-4o, GPT-4o-mini
+- **Anthropic**: Claude Sonnet 5.5, Claude Opus 5.5, Claude Haiku 5.5 (plus Claude 3.5 series with 1024 token boundary checks)
+- **OpenAI**: GPT-6.1 Sol, GPT-6 Astra, GPT-6 Luna, GPT-4o, GPT-4o-mini
 - **DeepSeek**: DeepSeek V3, DeepSeek R1
 
 ---

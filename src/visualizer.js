@@ -77,9 +77,9 @@ export function formatReport(analysis) {
     lines.push('');
     lines.push(`${RED}${BOLD}💸 ESTIMATED COST LEAK (Avoidable API Waste):${RESET}`);
     lines.push(`  • Waste Per Request:     ${RED}${BOLD}-$${costLeak.wastedPerRequest.toFixed(4)}${RESET}`);
-  lines.push(`  • At 100 req/day:        ${RED}${BOLD}-$${costLeak.projectedMonthlyLoss.req100Day.toFixed(2)} / month${RESET}`);
-    lines.push(`  • At 1,000 req/day:      ${RED}${BOLD}-$${costLeak.projectedMonthlyLoss.req100Day.toFixed(2) * 10} / month${RESET}`);
-    lines.push(`  • At 5,000 req/day:      ${RED}${BOLD}-$${costLeak.projectedMonthlyLoss.req100Day.toFixed(2) * 50} / month${RESET}`);
+    lines.push(`  • At 100 req/day:        ${RED}${BOLD}-$${costLeak.projectedMonthlyLoss.req100Day.toFixed(2)} / month${RESET}`);
+    lines.push(`  • At 1,000 req/day:      ${RED}${BOLD}-$${costLeak.projectedMonthlyLoss.req1000Day.toFixed(2)} / month${RESET}`);
+    lines.push(`  • At 5,000 req/day:      ${RED}${BOLD}-$${costLeak.projectedMonthlyLoss.req5000Day.toFixed(2)} / month${RESET}`);
   }
 
   lines.push(`${DIM}────────────────────────────────────────────────────────────────────────${RESET}`);
